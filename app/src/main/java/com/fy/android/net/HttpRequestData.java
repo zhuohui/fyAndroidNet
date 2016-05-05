@@ -87,56 +87,5 @@ public class HttpRequestData {
 		this.get = get;
 	}
 
-	 public final static byte[] ecodeStr2 =
-		{0x7, 0x77, (byte) 0xd5,
-		  (byte) 0xc1, 0x7d, 0x40, 0x66,(byte) 0xb8 };
-	 
-	 
-	 /*
-		 *生成密钥 encodeKeyA.length=24
-		 */
-		public static byte[] genCroptyKey(byte[] encodeKeyA, String randomStrB)
-		{
-			if (encodeKeyA == null)
-			{
-				return null;
-			}
-			
-			//byte[] B = new byte[24];
-			byte[] C =null;
-			try {
-				C=randomStrB.getBytes("utf-8");
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
-		
-			int clen = C.length;
-			if (encodeKeyA.length != 24 || (clen < 8 || clen > 20))
-				return null;
-			
-			byte[] result = new byte[24];
-			for (int i = 0; i < encodeKeyA.length; i++)
-			{ //0 &  1 |  2 ^
 
-				switch (i % 3)
-				{
-					case 0:
-						result[i] = (byte) (encodeKeyA[i] & (C[i%C.length]+i));
-						break;
-					case 1:
-						result[i] = (byte) (encodeKeyA[i] | (C[i%C.length]+i));
-						break;
-					case 2:
-						result[i] = (byte) (encodeKeyA[i] ^ (C[i%C.length]+i));
-						break;
-				}
-
-			}
-
-			//System.out.println("key=" + result.toString());
-
-			return result;
-		}
 }
