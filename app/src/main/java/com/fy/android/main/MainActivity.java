@@ -38,18 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
     protected void doWebTest()
     {
-        String url = "http://blog.csdn.net/zhuobattle/article/details/51076839";
+        String url = "http://www.target.com/abcd";
 
         try {
             MyHttpRequest http = new MyHttpRequest(url);
             //http.addPost("data", "testpost");
             //post参数结束，get请求，不要添加上面setPost代码
-           http.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-           http.addHeader("Accept-Encoding", "gzip, deflate, sdch");
+            http.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            http.addHeader("Accept-Encoding", "gzip, deflate, sdch");
             http.addHeader("Accept-Language","zh-CN,zh;q=0.8");
-            http.addHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36");
-            http.addHeader("host", "blog.csdn.net");
-            http.addHeader("Connection","keep-alive");
+           // http.addHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36");
             http.StartRequest(new INetResponseListener() {
                 @Override
                 public void OnRequestComplete(NetResponse result) {
